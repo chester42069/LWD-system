@@ -113,7 +113,7 @@
             display: flex;
             align-items: center;
             background: linear-gradient(135deg, rgba(0, 4, 40, 0.85) 0%, rgba(0, 78, 146, 0.7) 100%),
-                        url('https://lagunawater.com.ph/storage/blogs/5d35619978ed0904ab7832c2/article_image.jpg') center/cover;
+                        url('b1.png') center/cover;
             color: var(--white);
             margin-top: 0;
             clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
