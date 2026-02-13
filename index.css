@@ -178,64 +178,53 @@
         .card {
             background: var(--white);
             padding: 3rem 2rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            transition: var(--transition);
-            border: 1px solid rgba(0,0,0,0.03);
+            border-radius: 12px; /* Slightly reduced radius for a sharper look */
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02); /* Very subtle initial shadow */
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0,0,0,0.05);
             position: relative;
-            overflow: hidden;
             text-align: left;
+            height: 100%; /* Ensures equal height in grid */
         }
 
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: var(--transition);
-        }
-
+        /* Simplified Hover: Subtle Lift + Stronger Shadow + Border Accent */
         .card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow);
+            transform: translateY(-5px); /* Reduced lift (was -10px) */
+            box-shadow: 0 15px 30px rgba(0, 78, 146, 0.1); /* Professional blue-tinted shadow */
+            border-color: rgba(0, 78, 146, 0.2); /* Subtle border highlight */
         }
-
-        .card:hover::before { transform: scaleX(1); }
 
         .icon-box {
-            width: 70px;
-            height: 70px;
-            background: rgba(0, 198, 255, 0.1);
-            border-radius: 50%;
+            width: 60px; /* Slightly smaller */
+            height: 60px;
+            background: rgba(0, 78, 146, 0.05); /* Very light blue bg */
+            border-radius: 10px; /* Rounded square is often more modern than circle */
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             color: var(--primary);
             margin-bottom: 1.5rem;
-            transition: var(--transition);
+            transition: all 0.3s ease;
         }
 
+        /* Icon Hover: Simple Color Fill (No Rotation) */
         .card:hover .icon-box {
             background: var(--primary);
             color: var(--white);
-            transform: rotateY(360deg);
         }
 
         .card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
+            font-size: 1.35rem;
+            margin-bottom: 0.75rem;
             color: var(--secondary);
+            font-weight: 600;
         }
 
         .card p {
             color: var(--text-light);
             font-size: 0.95rem;
+            line-height: 1.6;
         }
 
         /* --- 5. Footer --- */
