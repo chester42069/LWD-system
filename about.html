@@ -11,7 +11,6 @@
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="about.css">
-    
 </head>
 <body>
 
@@ -40,6 +39,46 @@
         </div>
     </section>
 
+    <!-- NEW SECTION: LARC vs LWD PARTNERSHIP -->
+    <section class="partnership-section">
+        <div class="container">
+            <div class="partnership-header">
+                <h2>Our Operational Framework</h2>
+                <p>To provide world-class service, the Laguna Water District operates through a strategic Joint Venture Partnership. Here is how we work together for our consumers.</p>
+            </div>
+            
+            <div class="partnership-grid">
+                <!-- LARC Card -->
+                <div class="partner-card">
+                    <div class="partner-badge">The Operator</div>
+                    <div class="partner-icon"><i class="fa-solid fa-faucet-drip"></i></div>
+                    <h3>LARC</h3>
+                    <p class="partner-sub">Laguna Water District Aquatech Resources Corp.</p>
+                    <ul class="partner-list">
+                        <li><i class="fa-solid fa-check"></i> <strong>Operations:</strong> Manages daily water supply, treatment, and distribution systems.</li>
+                        <li><i class="fa-solid fa-check"></i> <strong>Customer Care:</strong> Handles all billing, collections, and customer service complaints.</li>
+                        <li><i class="fa-solid fa-check"></i> <strong>Maintenance:</strong> Responsible for repairing leaks, meter management, and facility rehabilitation.</li>
+                        <li><i class="fa-solid fa-check"></i> <strong>Investment:</strong> Finances the expansion and improvement of water infrastructure.</li>
+                    </ul>
+                </div>
+
+                <!-- LWD Card -->
+                <div class="partner-card regulator">
+                    <div class="partner-badge">The Regulator</div>
+                    <div class="partner-icon"><i class="fa-solid fa-building-shield"></i></div>
+                    <h3>LWD</h3>
+                    <p class="partner-sub">Laguna Water District</p>
+                    <ul class="partner-list">
+                        <li><i class="fa-solid fa-shield-halved"></i> <strong>Policy & Planning:</strong> Sets service targets and long-term strategic obligations.</li>
+                        <li><i class="fa-solid fa-shield-halved"></i> <strong>Asset Management:</strong> Retains ownership of facilities and conducts regular inspections.</li>
+                        <li><i class="fa-solid fa-shield-halved"></i> <strong>Performance Review:</strong> Monitors LARC to ensure they meet quality and service standards.</li>
+                        <li><i class="fa-solid fa-shield-halved"></i> <strong>Tariff Oversight:</strong> Manages and applies for water rate adjustments with government agencies.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="history-section">
         <div class="container history-grid">
             <div class="history-content">
@@ -49,7 +88,7 @@
                 <p>Today, these infrastructure investments have led to a wider scope of service and a rebranding into the <strong>Laguna Water District (LWD)</strong>, committed to serving our communities better.</p>
             </div>
             <div class="history-image">
-                <img src="b2.png" alt="">
+                <img src="b2.png" alt="History Image">
             </div>
         </div>
     </section>
@@ -167,20 +206,16 @@
             <p>&copy; 2026 Laguna Water District. All Rights Reserved.</p>
         </div>
     </footer>
-<script>
-    // Select the header element
-    const header = document.querySelector('header');
 
-    // Listen for the scroll event
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            // If scrolled down more than 50px, add the 'scrolled' class
-            header.classList.add('scrolled');
-        } else {
-            // If at the top, remove the 'scrolled' class
-            header.classList.remove('scrolled');
-        }
-    });
-</script>
+    <script>
+        const header = document.querySelector('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
 </body>
 </html>
