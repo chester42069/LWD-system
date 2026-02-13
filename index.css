@@ -305,7 +305,28 @@
             font-size: 0.9rem;
             color: rgba(255,255,255,0.5);
         }
+/* --- Scroll Effect Styles --- */
 
+/* 1. Change background to Footer Color (Secondary) */
+header.scrolled {
+    background-color: var(--secondary); 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Stronger shadow for the dark header */
+}
+
+/* 2. Change Navigation Links to White */
+header.scrolled nav a {
+    color: var(--white);
+}
+
+/* 3. Change Menu Icon (Mobile) to White */
+header.scrolled .menu-toggle {
+    color: var(--white);
+}
+
+/* 4. Adjust the underline hover effect for the dark background */
+header.scrolled nav a::after {
+    background: var(--accent); /* Keep accent or change to white if preferred */
+}
         /* --- 6. Mobile Responsiveness --- */
         @media (max-width: 768px) {
             .menu-toggle { display: block; }
