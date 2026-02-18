@@ -7,13 +7,12 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@500;700&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="overview.css">
     <link rel="stylesheet" href="chat.css">
-  
-
+    <link rel="icon" type="image/png" href="LWDLOGO.png">
 </head>
 <body>
 
@@ -37,37 +36,82 @@
 
     <section class="page-header">
         <div class="container">
-            <div class="breadcrumb">Information</div>
-            <h1>Certificate of Compliance Year 2025, Career Opportunities &<span>Citizen's Charter 2025</span></h1>
+            <div class="breadcrumb">Public Records</div>
+            <h1>Transparency & <span>Resources</span></h1>
         </div>
     </section>
 
-    <section class="overview-section">
+    <section class="charter-section">
         <div class="container">
-            
-            <div class="overview-images">
-                <div class="img-wrapper" onclick="openModal(this.querySelector('img'))">
-                    <img src="certificate of compliance year 2025.jpg" alt="Certificate of Compliance Year 2025">
-                    <div class="click-overlay">
-                        <span><i class="fa-solid fa-magnifying-glass-plus"></i> Click to View</span>
+            <div class="charter-wrapper">
+                <div class="charter-info">
+                    <span class="tag">Major Document</span>
+                    <h2>Citizen's Charter 2025</h2>
+                    <p>The Citizen's Charter is our official document detailing the comprehensive list of services we provide to the public, including step-by-step procedures, expected timeframes, and fees. It is our pledge of service standards to you.</p>
+                    
+                    <div class="charter-actions">
+                        <a href="2025 Citizen's Charter.pdf" download class="btn-download">
+                            <i class="fa-solid fa-download"></i> Download PDF
+                        </a>
+                        <div class="meta-info">
+                            <i class="fa-regular fa-file-pdf"></i> Official 2025 Version
+                        </div>
                     </div>
                 </div>
                 
-                <div class="img-wrapper" onclick="openModal(this.querySelector('img'))">
-                    <img src="career opportunities.jpg" alt="Career Opportunities">
-                    <div class="click-overlay">
-                        <span><i class="fa-solid fa-magnifying-glass-plus"></i> Click to View</span>
+                <div class="pdf-viewer-card">
+                    <div class="pdf-header">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                        <span class="browser-title">LWD_Citizens_Charter_2025.pdf</span>
                     </div>
+                    <iframe src="2025 Citizen's Charter.pdf#toolbar=0&navpanes=0&scrollbar=1" type="application/pdf">
+                        <p>Your browser does not support PDFs. <a href="2025 Citizen's Charter.pdf">Download here</a>.</p>
+                    </iframe>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <div class="pdf-container">
-                <iframe src="2025 Citizen's Charter.pdf#toolbar=0&navpanes=0&scrollbar=1" type="application/pdf" width="100%" height="100%">
-                    <p>Your browser does not support PDFs. 
-                    <a href="2025 Citizen's Charter.pdf">Download the PDF</a>.</p>
-                </iframe>
+    <section class="resources-section">
+        <div class="container">
+            <div class="section-title">
+                <h3>Certifications & Careers</h3>
+                <div class="line"></div>
             </div>
 
+            <div class="resources-grid">
+                
+                <div class="resource-card" onclick="openModal(this.querySelector('.source-img'))">
+                    <div class="card-thumb">
+                        <img src="certificate of compliance year 2025.jpg" alt="Certificate of Compliance Year 2025" class="source-img">
+                        <div class="overlay">
+                            <i class="fa-solid fa-expand"></i>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h4>Certificate of Compliance</h4>
+                        <p>Official validation of LWD's adherence to national standards for the year 2025.</p>
+                        <span class="link-text">View Document <i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </div>
+
+                <div class="resource-card" onclick="openModal(this.querySelector('.source-img'))">
+                    <div class="card-thumb">
+                        <img src="career opportunities.jpg" alt="Career Opportunities" class="source-img">
+                        <div class="overlay">
+                            <i class="fa-solid fa-expand"></i>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h4>Career Opportunities</h4>
+                        <p>Join our team. Explore current job openings and requirements for 2025.</p>
+                        <span class="link-text">View Openings <i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </section>
 
@@ -109,12 +153,9 @@
 
     <script src="chat.js"></script>
     <script src="chat-loader.js"></script>
-
     <script>
-        // Get the modal
+        // Modal Logic
         var modal = document.getElementById("myModal");
-
-        // Get the image and insert it inside the modal - use its "alt" text as a caption
         var modalImg = document.getElementById("img01");
         var captionText = document.getElementById("caption");
 
@@ -124,30 +165,25 @@
             captionText.innerHTML = element.alt;
         }
 
-        // Get the <span> element that closes the modal
         function closeModal() {
             modal.style.display = "none";
         }
 
-        // Close when clicking outside the image
         window.onclick = function(event) {
             if (event.target == modal) {
                 modal.style.display = "none";
             }
         }
-        // Select the header element
-    const header = document.querySelector('header');
 
-    // Listen for the scroll event
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            // If scrolled down more than 50px, add the 'scrolled' class
-            header.classList.add('scrolled');
-        } else {
-            // If at the top, remove the 'scrolled' class
-            header.classList.remove('scrolled');
-        }
-    });
+        // Header Scroll Logic
+        const header = document.querySelector('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
     </script>
 
 </body>
