@@ -1,335 +1,547 @@
+/* =========================================
+   1. VARIABLES & GLOBAL RESETS
+   ========================================= */
 :root {
-            --primary: #004e92;      
-            --secondary: #000428;    
-            --accent: #00c6ff;       
-            --text-dark: #1e293b;
-            --text-light: #64748b;
-            --white: #ffffff;
-            --glass: rgba(255, 255, 255, 0.95);
-            --shadow: 0 10px 30px rgba(0, 78, 146, 0.15);
-            --transition: all 0.3s ease;
-        }
+    /* Brand Colors */
+    --primary: #004e92;      
+    --secondary: #000428;    
+    --accent: #00c6ff;       
+    --text-dark: #1e293b;
+    --text-light: #64748b;
+    --white: #ffffff;
+    
+    /* UI Elements */
+    --glass: rgba(255, 255, 255, 0.95);
+    --shadow: 0 10px 30px rgba(0, 78, 146, 0.15);
+    --transition: all 0.3s ease;
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+    /* Chatbot Specific Variables */
+    --chat-width: 380px;
+    --chat-height: 550px; /* Slightly taller for better view */
+    --chat-bg: rgba(255, 255, 255, 0.9);
+    --bot-msg-bg: #f1f5f9;
+    --user-msg-bg: var(--primary);
+    --user-msg-text: #ffffff;
+}
 
-        body {
-            font-family: 'Inter', sans-serif;
-            color: var(--text-dark);
-            background-color: #f8fafc;
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-        h1, h2, h3, h4 {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 700;
-            line-height: 1.2;
-        }
+body {
+    font-family: 'Inter', sans-serif;
+    color: var(--text-dark);
+    background-color: #f8fafc;
+    overflow-x: hidden;
+    line-height: 1.6;
+}
 
-        a { text-decoration: none; color: inherit; }
-        ul { list-style: none; }
+h1, h2, h3, h4 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    line-height: 1.2;
+}
 
-        /* --- 2. Header (Glassmorphism) --- */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            background: var(--glass);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-            padding: 1rem 0;
-            transition: var(--transition);
-        }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
+/* =========================================
+   2. HEADER (Glassmorphism)
+   ========================================= */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background: var(--glass);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    padding: 1rem 0;
+    transition: var(--transition);
+}
 
-        .logo {
-            display: flex;
-            align-items: center;
-        }
-
-        .logo img {
-            height: 50px;
-            width: auto;
-            object-fit: contain;
-        }
-
-        nav ul {
-            display: flex;
-            gap: 2rem;
-        }
-
-        nav a {
-            font-weight: 500;
-            font-size: 0.95rem;
-            color: var(--text-dark);
-            position: relative;
-            padding: 5px 0;
-            transition: var(--transition);
-        }
-
-        /* Nav Link Hover Effect (Underline) */
-        nav a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background: var(--accent);
-            transition: var(--transition);
-        }
-
-        nav a:hover::after { width: 100%; }
-        nav a:hover { color: var(--primary); }
-
-        /* ACTIVE STATE: Keeps the underline visible for the current page */
-        nav a.active::after {
-            width: 100%;
-        }
-        nav a.active {
-            color: var(--primary);
-            font-weight: 600;
-        }
-
-        .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: var(--primary); }
-
-        /* --- 3. Hero Section --- */
-        .hero {
-            position: relative;
-            height: 90vh;
-            display: flex;
-            align-items: center;
-            background: linear-gradient(135deg, rgba(0, 4, 40, 0.85) 0%, rgba(0, 78, 146, 0.7) 100%),
-                        url('b1.png') center/cover;
-            color: var(--white);
-            margin-top: 0;
-            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
-        }
-
-        .hero-content {
-            max-width: 800px;
-            animation: fadeInUp 1s ease-out;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            letter-spacing: -1px;
-        }
-
-        .hero h1 span {
-            color: var(--accent);
-            display: inline-block;
-            position: relative;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            margin-bottom: 2.5rem;
-            opacity: 0.9;
-            font-weight: 300;
-        }
-        
-        /* --- 4. Features/Services Section --- */
-        .services {
-            padding: 6rem 0;
-            text-align: center;
-        }
-
-        .section-header {
-            margin-bottom: 4rem;
-            padding: 0 1rem;
-        }
-
-        .section-header h2 {
-            font-size: 2.5rem;
-            color: var(--secondary);
-            margin-bottom: 1rem;
-        }
-
-        .section-header p {
-            color: var(--text-light);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            padding: 0 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .card {
-            background: var(--white);
-            padding: 3rem 2rem;
-            border-radius: 12px; /* Slightly reduced radius for a sharper look */
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02); /* Very subtle initial shadow */
-            transition: all 0.3s ease;
-            border: 1px solid rgba(0,0,0,0.05);
-            position: relative;
-            text-align: left;
-            height: 100%; /* Ensures equal height in grid */
-        }
-
-        /* Simplified Hover: Subtle Lift + Stronger Shadow + Border Accent */
-        .card:hover {
-            transform: translateY(-5px); /* Reduced lift (was -10px) */
-            box-shadow: 0 15px 30px rgba(0, 78, 146, 0.1); /* Professional blue-tinted shadow */
-            border-color: rgba(0, 78, 146, 0.2); /* Subtle border highlight */
-        }
-
-        .icon-box {
-            width: 60px; /* Slightly smaller */
-            height: 60px;
-            background: rgba(0, 78, 146, 0.05); /* Very light blue bg */
-            border-radius: 10px; /* Rounded square is often more modern than circle */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-            transition: all 0.3s ease;
-        }
-
-        /* Icon Hover: Simple Color Fill (No Rotation) */
-        .card:hover .icon-box {
-            background: var(--primary);
-            color: var(--white);
-        }
-
-        .card h3 {
-            font-size: 1.35rem;
-            margin-bottom: 0.75rem;
-            color: var(--secondary);
-            font-weight: 600;
-        }
-
-        .card p {
-            color: var(--text-light);
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        /* --- 5. Footer --- */
-        footer {
-            background: var(--secondary);
-            color: var(--white);
-            padding: 4rem 2rem 2rem;
-            margin-top: 4rem;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .footer-col h4 {
-            color: var(--accent);
-            margin-bottom: 1.5rem;
-            font-size: 1.2rem;
-        }
-
-        .footer-col p, .footer-col a {
-            color: rgba(255,255,255,0.7);
-            margin-bottom: 0.8rem;
-            display: block;
-            transition: var(--transition);
-            font-size: 0.95rem;
-        }
-
-        .footer-col a:hover {
-            color: var(--accent);
-            padding-left: 5px;
-        }
-
-        .socials {
-            display: flex;
-            gap: 15px;
-            margin-top: 1rem;
-        }
-
-        .socials a {
-            width: 40px;
-            height: 40px;
-            background: rgba(255,255,255,0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            color: var(--white);
-            transition: var(--transition);
-        }
-
-        .socials a:hover {
-            background: var(--accent);
-            color: var(--secondary);
-            transform: translateY(-3px);
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            font-size: 0.9rem;
-            color: rgba(255,255,255,0.5);
-        }
-/* --- Scroll Effect Styles --- */
-
-/* 1. Change background to Footer Color (Secondary) */
+/* Scroll Effect Styles */
 header.scrolled {
     background-color: var(--secondary); 
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Stronger shadow for the dark header */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
-/* 2. Change Navigation Links to White */
-header.scrolled nav a {
+header.scrolled nav a { color: var(--white); }
+header.scrolled .menu-toggle { color: var(--white); }
+header.scrolled nav a::after { background: var(--accent); }
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo { display: flex; align-items: center; }
+
+.logo img {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
+}
+
+nav ul { display: flex; gap: 2rem; }
+
+nav a {
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    position: relative;
+    padding: 5px 0;
+    transition: var(--transition);
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background: var(--accent);
+    transition: var(--transition);
+}
+
+nav a:hover::after { width: 100%; }
+nav a:hover { color: var(--primary); }
+
+nav a.active::after { width: 100%; }
+nav a.active { color: var(--primary); font-weight: 600; }
+
+.menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: var(--primary); }
+
+/* =========================================
+   3. HERO SECTION
+   ========================================= */
+.hero {
+    position: relative;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, rgba(0, 4, 40, 0.85) 0%, rgba(0, 78, 146, 0.7) 100%),
+                url('b1.png') center/cover;
     color: var(--white);
+    margin-top: 0;
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
 }
 
-/* 3. Change Menu Icon (Mobile) to White */
-header.scrolled .menu-toggle {
+.hero-content {
+    max-width: 800px;
+    animation: fadeInUp 1s ease-out;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: -1px;
+}
+
+.hero h1 span {
+    color: var(--accent);
+    display: inline-block;
+    position: relative;
+}
+
+.hero p {
+    font-size: 1.25rem;
+    margin-bottom: 2.5rem;
+    opacity: 0.9;
+    font-weight: 300;
+}
+
+/* =========================================
+   4. SERVICES SECTION
+   ========================================= */
+.services { padding: 6rem 0; text-align: center; }
+
+.section-header { margin-bottom: 4rem; padding: 0 1rem; }
+.section-header h2 { font-size: 2.5rem; color: var(--secondary); margin-bottom: 1rem; }
+.section-header p { color: var(--text-light); max-width: 600px; margin: 0 auto; }
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 0 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.card {
+    background: var(--white);
+    padding: 3rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0,0,0,0.05);
+    position: relative;
+    text-align: left;
+    height: 100%;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 78, 146, 0.1);
+    border-color: rgba(0, 78, 146, 0.2);
+}
+
+.icon-box {
+    width: 60px;
+    height: 60px;
+    background: rgba(0, 78, 146, 0.05);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.card:hover .icon-box { background: var(--primary); color: var(--white); }
+
+.card h3 { font-size: 1.35rem; margin-bottom: 0.75rem; color: var(--secondary); font-weight: 600; }
+.card p { color: var(--text-light); font-size: 0.95rem; line-height: 1.6; }
+
+/* =========================================
+   5. FOOTER
+   ========================================= */
+footer {
+    background: var(--secondary);
     color: var(--white);
+    padding: 4rem 2rem 2rem;
+    margin-top: 4rem;
 }
 
-/* 4. Adjust the underline hover effect for the dark background */
-header.scrolled nav a::after {
-    background: var(--accent); /* Keep accent or change to white if preferred */
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 3rem;
+    margin-bottom: 3rem;
 }
-        /* --- 6. Mobile Responsiveness --- */
-        @media (max-width: 768px) {
-            .menu-toggle { display: block; }
-            nav ul {
-                display: none; 
-            }
-            .hero h1 { font-size: 2.5rem; }
-            .hero { clip-path: none; height: auto; padding: 8rem 0 4rem; }
-            .hero-content { padding: 0 1.5rem; text-align: center; }
-            
-            .grid { padding: 0 1rem; }
-        }
 
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+.footer-col h4 { color: var(--accent); margin-bottom: 1.5rem; font-size: 1.2rem; }
+.footer-col p, .footer-col a {
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 0.8rem;
+    display: block;
+    transition: var(--transition);
+    font-size: 0.95rem;
+}
+
+.footer-col a:hover { color: var(--accent); padding-left: 5px; }
+
+.socials { display: flex; gap: 15px; margin-top: 1rem; }
+.socials a {
+    width: 40px;
+    height: 40px;
+    background: rgba(255,255,255,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: var(--white);
+    transition: var(--transition);
+}
+
+.socials a:hover {
+    background: var(--accent);
+    color: var(--secondary);
+    transform: translateY(-3px);
+}
+
+.copyright {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.5);
+}
+
+/* =========================================
+   6. MODERN CHATBOT STYLES
+   ========================================= */
+
+/* --- Floating Chat Bubble --- */
+#chat-bubble {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    border-radius: 50%;
+    box-shadow: 0 8px 24px rgba(0, 78, 146, 0.35);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.27), box-shadow 0.3s ease;
+}
+
+#chat-bubble:hover {
+    transform: scale(1.1);
+    box-shadow: 0 12px 30px rgba(0, 78, 146, 0.5);
+}
+
+.bubble-icon-bg { font-size: 24px; color: white; }
+
+/* Pulse Animation for Bubble */
+.pulse-ring {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px solid var(--accent);
+    opacity: 0;
+    animation: pulse 2s infinite;
+}
+
+/* --- Chat Window Main Container --- */
+#chat-window {
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    width: var(--chat-width);
+    height: var(--chat-height);
+    background: var(--chat-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 9998;
+    
+    /* Animation Properties */
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Active State (controlled by JS) */
+#chat-window.active {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: all;
+}
+
+/* --- Chat Header --- */
+.chat-header {
+    padding: 18px 24px;
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.header-content { display: flex; align-items: center; gap: 12px; }
+
+.bot-avatar {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    background: white;
+    border-radius: 50%;
+    padding: 2px;
+}
+
+.bot-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 50%;
+}
+
+.online-indicator {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    width: 10px;
+    height: 10px;
+    background: #10b981;
+    border: 2px solid white;
+    border-radius: 50%;
+}
+
+.bot-info .bot-name { font-weight: 600; font-size: 1rem; }
+.bot-info .bot-status { font-size: 0.75rem; opacity: 0.8; }
+
+.header-actions button {
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.7);
+    cursor: pointer;
+    font-size: 1.1rem;
+    margin-left: 10px;
+    transition: color 0.2s;
+}
+
+.header-actions button:hover { color: white; }
+
+/* --- Chat Body --- */
+.chat-body {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    scrollbar-width: thin;
+}
+
+/* Messages */
+.msg {
+    max-width: 80%;
+    padding: 12px 16px;
+    border-radius: 18px;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    position: relative;
+    animation: fadeIn 0.3s ease;
+}
+
+.msg.bot {
+    align-self: flex-start;
+    background: var(--bot-msg-bg);
+    color: var(--text-dark);
+    border-bottom-left-radius: 4px;
+}
+
+.msg.user {
+    align-self: flex-end;
+    background: var(--user-msg-bg);
+    color: var(--user-msg-text);
+    border-bottom-right-radius: 4px;
+    box-shadow: 0 4px 10px rgba(0, 78, 146, 0.2);
+}
+
+/* --- Chat Footer (Input) --- */
+.chat-footer {
+    padding: 15px 20px;
+    background: rgba(255,255,255,0.8);
+    border-top: 1px solid rgba(0,0,0,0.05);
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 30px;
+    padding: 6px 6px 6px 18px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input-container:focus-within {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(0, 78, 146, 0.1);
+}
+
+#chat-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    color: var(--text-dark);
+}
+
+.send-btn {
+    width: 36px;
+    height: 36px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.send-btn:hover {
+    background: var(--accent);
+    transform: rotate(-10deg);
+}
+
+/* Typing Indicator */
+.typing {
+    font-size: 0.75rem;
+    color: #94a3b8;
+    margin-left: 10px;
+    margin-bottom: 5px;
+    font-style: italic;
+    animation: blink 1.5s infinite;
+}
+
+/* =========================================
+   7. ANIMATIONS & MEDIA QUERIES
+   ========================================= */
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 0.6; }
+    100% { transform: scale(1.6); opacity: 0; }
+}
+
+@keyframes blink {
+    50% { opacity: 0.5; }
+}
+
+@media (max-width: 768px) {
+    .menu-toggle { display: block; }
+    nav ul { display: none; }
+    
+    .hero h1 { font-size: 2.5rem; }
+    .hero { clip-path: none; height: auto; padding: 8rem 0 4rem; }
+    .hero-content { padding: 0 1.5rem; text-align: center; }
+    
+    .grid { padding: 0 1rem; }
+}
+
+/* Mobile Chatbot Adjustments */
+@media (max-width: 480px) {
+    #chat-window {
+        width: 100%;
+        height: 100%;
+        bottom: 0;
+        right: 0;
+        border-radius: 0;
+    }
+    
+    #chat-bubble {
+        bottom: 20px;
+        right: 20px;
+    }
+    
+    .card { padding: 2rem 1.5rem; }
+}
