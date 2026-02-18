@@ -95,10 +95,9 @@ function getBotResponse(input) {
     if (input.includes("contact") || input.includes("phone") || input.includes("number") || input.includes("email") || input.includes("call") || input.includes("mobile") || input.includes("landline") || input.includes("ogm") || input.includes("web") || input.includes("site")) {
         return "You can reach us at:<br>• Phone: <b>(049) 536-0661</b><br>• Email: <b>ogm@laguna-water.com</b><br>• Web: www.laguna-water.com";
     }
-
-    // --- 3. COMPLAINTS HANDLING ---
+   // --- 3. COMPLAINTS HANDLING ---
     if (input.includes("complaint") || input.includes("leak") || input.includes("clogged") || input.includes("no water") || input.includes("pressure") || input.includes("broken pipe") || input.includes("burst") || input.includes("dirty water") || input.includes("smelly") || input.includes("color") || input.includes("report issue") || input.includes("problem")) {
-        return "<b>Complaints Handling:</b><br>1. Report via phone or walk-in (15 mins processing).<br>2. <b>Resolution Times:</b><br>• No Water/Low Pressure: 1-20 days depending on complexity.<br>• Leaking pipes/clogged meter: 8-16 hours.<br>• Restoration Works: 8 hours.<br>• Rehabilitation: 2 days.";
+        return "<b>Complaints Handling:</b><br>1. <b>Report via Phone:</b> Call <b>(049) 536-0331</b><br>2. <b>Walk-in:</b> Visit us at <b>5524 Manila S Rd, Los Baños, Laguna</b>.<br>3. <b>Resolution Times:</b><br>• No Water/Low Pressure: 1-20 days depending on complexity.<br>• Leaking pipes/clogged meter: 8-16 hours.<br>• Restoration Works: 8 hours.<br>• Rehabilitation: 2 days.";
     }
 
     // --- 4. WATER ANALYSIS ---
@@ -113,7 +112,7 @@ function getBotResponse(input) {
 
     // --- 6. CAREERS & RECRUITMENT ---
     if (input.includes("job") || input.includes("hiring") || input.includes("vacancy") || input.includes("work at lwd") || input.includes("career") || input.includes("employment") || input.includes("apply") || input.includes("application") || input.includes("resume") || input.includes("cv") || input.includes("position") || input.includes("salary")) {
-        return "<b>Current Vacancy:</b><br>• Position: <b>Sr. Water Maintenance Man B</b> (SG 10)<br>• Monthly Salary: <b>P25,586.00</b><br>• Requirements: Elementary School Graduate, 8 hrs relevant training, 2 yrs experience.<br>• Deadline: <b>November 15, 2025</b>. Apply to ogm@laguna-water.com.";
+        return "<b>Current Vacancies:</b><br><br><b>1. SR. WATER MAINTENANCE MAN B (SG 10)</b><br>• Salary: Php 25,586.00<br>• Requirements: Elementary School Graduate, 8 hrs relevant training, 2 yrs relevant experience.<br>• Deadline: <b>November 15, 2025</b><br>• Apply to: ogm@laguna-water.com<br><br><b>2. PRIVATE SECRETARY C (SG 11)</b><br>• Salary: Php 31,705.00<br>• Requirements: Completion of 2 years studies in college (prior 2018) OR Senior High School Graduate (starting 2016).<br>• Deadline: <b>February 15, 2026</b><br>• Apply to: ogm@laguna-water.com";
     }
 
     // --- 7. HISTORY & PARTNERSHIP ---
@@ -147,12 +146,6 @@ function getBotResponse(input) {
         return "Internal services for LWD employees (Leave, Service Records, COE, etc.) are processed by the HR Section. Processing times range from 8 minutes to 2 days.";
     }
 
-   // --- 12. DISCONNECTION & RECONNECTION ---
-    if (input.includes("disconnect") || input.includes("cut off") || input.includes("reconnect") || input.includes("restore") || input.includes("overdue") || input.includes("penalty") || input.includes("reactivate") || input.includes("unpaid")) {
-        return "<b>Disconnection/Reconnection:</b><br>• Accounts with 2 months unpaid bills are subject to disconnection.<br>• <b>To Reconnect:</b> Pay the full outstanding balance plus the Reconnection Fee at the main office. Service is usually restored within 24 hours of payment.";
-    }
-
     // DEFAULT RESPONSE
     return "I'm sorry, I don't have information on that specific topic. You can ask about <b>complaints, water testing, office hours, location, or job openings</b>. For complex issues, please call (049) 536-0661.";
-}
-
+}       
