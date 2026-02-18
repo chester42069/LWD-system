@@ -147,6 +147,12 @@ function getBotResponse(input) {
         return "Internal services for LWD employees (Leave, Service Records, COE, etc.) are processed by the HR Section. Processing times range from 8 minutes to 2 days.";
     }
 
+   // --- 12. DISCONNECTION & RECONNECTION ---
+    if (input.includes("disconnect") || input.includes("cut off") || input.includes("reconnect") || input.includes("restore") || input.includes("overdue") || input.includes("penalty") || input.includes("reactivate") || input.includes("unpaid")) {
+        return "<b>Disconnection/Reconnection:</b><br>• Accounts with 2 months unpaid bills are subject to disconnection.<br>• <b>To Reconnect:</b> Pay the full outstanding balance plus the Reconnection Fee at the main office. Service is usually restored within 24 hours of payment.";
+    }
+
     // DEFAULT RESPONSE
     return "I'm sorry, I don't have information on that specific topic. You can ask about <b>complaints, water testing, office hours, location, or job openings</b>. For complex issues, please call (049) 536-0661.";
 }
+
