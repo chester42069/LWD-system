@@ -1,6 +1,6 @@
 /**
  * LWD Chatbot Loader
- * This script injects the Chatbot HTML automatically.
+ * Injects the Chatbot HTML automatically WITH suggestion buttons.
  */
 
 const chatbotUI = `
@@ -35,10 +35,24 @@ const chatbotUI = `
         </div>
         
         <div id="chat-body" class="chat-body">
+
+            <!-- FIRST BOT MESSAGE -->
             <div class="msg bot">
                 Hello! 🌊 I'm your LWD Assistant. How can I assist you with our services today?
             </div>
-            <div id="typing-indicator" class="typing" style="display:none;">Assistant is typing...</div>
+
+            <!-- ✅ SUGGESTION BUTTONS (NOW VISIBLE ON OPEN) -->
+            <div class="suggestions">
+                <button onclick="sendSuggestion('Office hours')">Office Hours</button>
+                <button onclick="sendSuggestion('Report complaint')">Report Complaint</button>
+                <button onclick="sendSuggestion('Water analysis requirements')">Water Analysis</button>
+                <button onclick="sendSuggestion('Job vacancies')">Job Vacancies</button>
+                <button onclick="sendSuggestion('Office location')">Office Location</button>
+            </div>
+
+            <div id="typing-indicator" class="typing" style="display:none;">
+                Assistant is typing...
+            </div>
         </div>
 
         <div class="chat-footer">
@@ -52,5 +66,4 @@ const chatbotUI = `
     </div>
 `;
 
-// Inject into the page
 document.body.insertAdjacentHTML('beforeend', chatbotUI);
