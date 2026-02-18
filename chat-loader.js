@@ -11,7 +11,7 @@ const chatbotUI = `
         <div class="pulse-ring"></div>
     </div>
 
-    <div id="chat-window" class="chat-hidden">
+    <div id="chat-window">
         <div class="chat-header">
             <div class="header-content">
                 <div class="bot-avatar">
@@ -52,4 +52,5 @@ const chatbotUI = `
     </div>
 `;
 
+// Inject into the page
 document.body.insertAdjacentHTML('beforeend', chatbotUI);
