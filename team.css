@@ -286,14 +286,19 @@ header.scrolled .menu-toggle { color: var(--secondary); }
 /* 1. Board Grid (Adaptive Flex instead of rigid grid) */
 .board-grid {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 2rem;
+    flex-wrap: nowrap;        /* Force a single line */
+    justify-content: center;  /* Center the group */
+    align-items: stretch;     /* Make sure all cards are same height */
+    gap: 1rem;                /* Reduced gap slightly (was 2rem) to help them fit */
+    overflow-x: auto;         /* Adds scroll on very small mobile screens if needed */
+    padding-bottom: 10px;     /* Space for scrollbar if it appears */
 }
 
 .board-grid .team-card {
-    width: 220px; /* Consistent fixed width for uniformity */
-    flex: 0 0 auto;
+    flex: 1;                  /* Makes all cards equal width */
+    width: auto;              /* Removes fixed 220px width */
+    min-width: 180px;         /* Prevents them from getting too skinny */
+    max-width: 240px;         /* Keeps them from getting too wide on huge screens */
 }
 
 /* 2. GM Card (Premium Look) */
