@@ -7,7 +7,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@500;700&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="index.css">
@@ -21,22 +21,25 @@
             <a href="index.html" class="logo">
                 <img src="LWDLOGO.png" alt="Laguna Water District Logo">
             </a>
-            <div class="menu-toggle"><i class="fa-solid fa-bars"></i></div>
+            
             <nav>
-                <ul>
+                <ul class="nav-links">
                     <li><a href="index.html" class="active">Home</a></li>
                     <li><a href="about.html">About Us</a></li>
+                    <li><a href="team.html">Our Team</a></li>
                     <li><a href="services.html">Services</a></li>
                     <li><a href="project.html">Projects</a></li>
                     <li><a href="overview.html">Overview</a></li>
                 </ul>
             </nav>
+
+            <div class="menu-toggle"><i class="fa-solid fa-bars"></i></div>
         </div>
     </header>
 
     <section class="hero">
         <div class="container hero-content">
-            <h1>Ensuring a <br><span>Sustainable Future</span> for Laguna.</h1>
+            <h1>Sustaining <span>Laguna's</span> Future.</h1>
             <p>Providing safe, reliable, and potable water to every household while preserving our natural resources for the next generation.</p>
         </div>
     </section>
@@ -88,6 +91,7 @@
             <div class="footer-col">
                 <h4>Quick Links</h4>
                 <a href="about.html">About Us</a>
+                <a href="team.html">Our Team</a>
                 <a href="services.html">Services</a>
                 <a href="project.html">Projects</a>
                 <a href="overview.html">Overview</a>
@@ -104,7 +108,6 @@
         </div>
     </footer>
 
-    <!-- CHATBOT UI -->
     <div id="chat-bubble" onclick="toggleChat()" title="Chat with LWD Assistant">
         <div class="bubble-icon-bg">
             <i class="fa-solid fa-comment-dots"></i>
@@ -140,7 +143,6 @@
                 Hello! 🌊 I'm your LWD Assistant. How can I assist you with our services today?
             </div>
 
-            <!-- Suggestion Buttons -->
             <div class="suggestions" id="suggestion-box">
                 <button onclick="sendSuggestion('Office hours')">Office Hours</button>
                 <button onclick="sendSuggestion('Report complaint')">Report Complaint</button>
@@ -165,6 +167,10 @@
     <script src="chat.js"></script>
     <script>
         const header = document.querySelector('header');
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navUl = document.querySelector('nav ul');
+
+        // Scroll Effect
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
                 header.classList.add('scrolled');
@@ -172,7 +178,30 @@
                 header.classList.remove('scrolled');
             }
         });
+
+        // Mobile Menu (Updated logic to match Team page)
+        menuToggle.addEventListener('click', () => {
+            navUl.classList.toggle('active');
+            const icon = menuToggle.querySelector('i');
+            
+            if (navUl.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+                
+                // Force white background header when menu is open on mobile
+                header.style.background = "#fff";
+                header.querySelectorAll('a, i').forEach(el => el.style.color = "#001524");
+            } else {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+                
+                // Reset styling logic
+                if(window.scrollY < 50) {
+                    header.style.background = "transparent";
+                    header.removeAttribute('style'); // Allow CSS to take over again
+                }
+            }
+        });
     </script>
 </body>
 </html>
-
