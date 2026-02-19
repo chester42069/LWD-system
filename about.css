@@ -293,7 +293,7 @@ footer {
 }
 
 .contact-item i {
-    color: var(--accent);
+    color: inherit;
     margin-top: 4px;
 }
 
