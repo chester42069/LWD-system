@@ -110,58 +110,53 @@
         </div>
     </section>
 
-    <section class="values-section">
-        <div class="container">
-            <div class="values-header">
-                <h2>Our Core Values</h2>
+    <section class="combined-info-section">
+        <div class="container combined-grid">
+            
+            <div class="values-column">
+                <div class="section-title-left">
+                    <h2>Our Core Values</h2>
+                    <div class="title-line"></div>
+                </div>
+                <div class="values-compact-list">
+                    <div class="value-row">
+                        <span class="value-letter">W</span>
+                        <div class="value-text"><strong>Work Integrity</strong></div>
+                    </div>
+                    <div class="value-row">
+                        <span class="value-letter">A</span>
+                        <div class="value-text"><strong>Assurance of Quality</strong></div>
+                    </div>
+                    <div class="value-row">
+                        <span class="value-letter">T</span>
+                        <div class="value-text"><strong>Teamwork</strong></div>
+                    </div>
+                    <div class="value-row">
+                        <span class="value-letter">E</span>
+                        <div class="value-text"><strong>Eco Stewardship</strong></div>
+                    </div>
+                    <div class="value-row">
+                        <span class="value-letter">R</span>
+                        <div class="value-text"><strong>Reliable Service</strong></div>
+                    </div>
+                </div>
             </div>
-            <div class="values-list">
-                <div class="value-item">
-                    <h1>W</h1>
-                    <p>Work Integrity</p>
-                </div>
-                <div class="value-item">
-                    <h1>A</h1>
-                    <p>Assurance of Quality</p>
-                </div>
-                <div class="value-item">
-                    <h1>T</h1>
-                    <p>Teamwork</p>
-                </div>
-                <div class="value-item">
-                    <h1>E</h1>
-                    <p>Eco Stewardship</p>
-                </div>
-                <div class="value-item">
-                    <h1>R</h1>
-                    <p>Reliable Service</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <section class="leadership-section" style="padding-bottom: 6rem;">
-        <div class="container">
-            <div class="values-header" style="margin-bottom: 2rem;">
-                <h2>Areas We Serve</h2>
+            <div class="service-column">
+                <div class="section-title-left">
+                    <h2>Areas We Serve</h2>
+                    <div class="title-line"></div>
+                </div>
+                <p class="service-intro">Ensuring reliable and sustainable water access across the following municipalities:</p>
+                <div class="scope-grid">
+                    <a href="#" class="scope-tag"><i class="fa-solid fa-map-pin"></i> Los Baños</a>
+                    <a href="#" class="scope-tag"><i class="fa-solid fa-map-pin"></i> Bay</a>
+                    <a href="#" class="scope-tag"><i class="fa-solid fa-map-pin"></i> Calauan</a>
+                    <a href="#" class="scope-tag"><i class="fa-solid fa-map-pin"></i> Victoria</a>
+                    <a href="#" class="scope-tag"><i class="fa-solid fa-map-pin"></i> Nagcarlan (Portions)</a>
+                </div>
             </div>
-            <div class="scope-list">
-                <a href="https://www.google.com/maps/place/Los+Baños,+Laguna" target="_blank" class="scope-tag">
-                    <i class="fa-solid fa-map-pin"></i> Los Baños
-                </a>
-                <a href="https://www.google.com/maps/place/Bay,+Laguna" target="_blank" class="scope-tag">
-                    <i class="fa-solid fa-map-pin"></i> Bay
-                </a>
-                <a href="https://www.google.com/maps/place/Calauan,+Laguna" target="_blank" class="scope-tag">
-                    <i class="fa-solid fa-map-pin"></i> Calauan
-                </a>
-                <a href="https://www.google.com/maps/place/Victoria,+Laguna" target="_blank" class="scope-tag">
-                    <i class="fa-solid fa-map-pin"></i> Victoria
-                </a>
-                <a href="https://www.google.com/maps/place/Nagcarlan,+Laguna" target="_blank" class="scope-tag">
-                    <i class="fa-solid fa-map-pin"></i> Nagcarlan (Portions)
-                </a>
-            </div>
+
         </div>
     </section>
 
@@ -188,11 +183,11 @@
                 <h4>Contact Info</h4>
                 <p><i class="fa-solid fa-location-dot"></i> 5524 Manila S Rd, Los Baños, Laguna</p>
                 <p><i class="fa-solid fa-phone"></i> (049) 536 0331</p>
-                <p><i class="fa-solid fa-envelope"></i> customercare@LWDistrict.onmicrosoft.com</p>
+                <p><i class="fa-solid fa-envelope"></i> ogm@laguna-water.com</p>
             </div>
         </div>
         <div class="copyright">
-            <p>&copy; 2026 Laguna Water District. All Rights Reserved.</p>
+            <p>© 2026 Laguna Water District. All Rights Reserved.</p>
         </div>
     </footer>
 
@@ -204,7 +199,6 @@
         const menuToggle = document.querySelector('.menu-toggle');
         const navUl = document.querySelector('nav ul');
 
-        // Scroll Effect
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
                 header.classList.add('scrolled');
@@ -213,7 +207,6 @@
             }
         });
 
-        // Mobile Menu
         menuToggle.addEventListener('click', () => {
             navUl.classList.toggle('active');
             const icon = menuToggle.querySelector('i');
@@ -221,22 +214,17 @@
             if (navUl.classList.contains('active')) {
                 icon.classList.remove('fa-bars');
                 icon.classList.add('fa-xmark');
-                
-                // Force white background header when menu is open on mobile
                 header.style.background = "#fff";
                 header.querySelectorAll('a, i').forEach(el => el.style.color = "#001524");
             } else {
                 icon.classList.remove('fa-xmark');
                 icon.classList.add('fa-bars');
-                
-                // Reset styling logic
                 if(window.scrollY < 50) {
                     header.style.background = "transparent";
-                    header.removeAttribute('style'); // Allow CSS to take over again
+                    header.removeAttribute('style');
                 }
             }
         });
     </script>
 </body>
 </html>
-
